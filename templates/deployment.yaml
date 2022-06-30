@@ -34,6 +34,10 @@ spec:
           envFrom: {{- toYaml .Values.envFrom | nindent 12 }}
           {{- end }}
           env:
+            - name: TYPESENSE_API_KEY
+              value: {{ .Values.apiKey }}
+            - name: TYPESENSE_ENABLE_CORS
+              value: {{ quote .Values.enableCors }}
             - name: TYPESENSE_DATA_DIR
               value: {{ .Values.persistence.path }}
             {{- if .Values.extraEnv }}
